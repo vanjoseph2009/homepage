@@ -1,296 +1,297 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VJ Games - Estúdio de Jogos Indie Retro</title>
-    <!-- Fontes gratuitas estilo Arcade e Tech do Google Fonts -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Orbitron:wght@500;800;900&family=Press+Start+2P&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>VJ GAMES | Hub de Jogos Indie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Reset e Variáveis de Cores Synthwave baseadas na sua Logo */
         :root {
-            --bg-color: #0b0f19;
-            --grid-color: rgba(236, 72, 153, 0.25);
-            --neon-pink: #ff007f;
-            --neon-cyan: #00f0ff;
-            --neon-orange: #ffaa00;
-            --text-light: #f8fafc;
+            --bg-deep: #0b0f19;
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00f3ff;
+            --sun-orange: #ff8c00;
+            --sun-yellow: #ffeb3b;
+            --grid-color: rgba(255, 0, 255, 0.2);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
+            background-color: var(--bg-deep);
+            color: white;
             font-family: 'Rajdhani', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-light);
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Efeito de Grade Retro 3D Animada por código (Sem risco de direitos autorais) */
-        body::before {
-            content: "";
+        /* Mantendo a Grelha Animada */
+        .grid-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: 
-                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-            background-size: 40px 40px;
-            background-position: center bottom;
-            transform: perspective(500px) rotateX(60deg);
-            transform-origin: center bottom;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, #0b0f19 0%, #1a0b2e 50%, #4a0e4e 100%);
             z-index: -1;
-            opacity: 0.6;
-            animation: gridMove 4s linear infinite;
+            perspective: 500px;
         }
 
-        @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 40px; }
+        .grid {
+            position: absolute;
+            width: 200%; height: 200%;
+            bottom: -50%; left: -50%;
+            background-image: linear-gradient(var(--grid-color) 2px, transparent 2px), linear-gradient(90deg, var(--grid-color) 2px, transparent 2px);
+            background-size: 60px 60px;
+            transform: rotateX(60deg);
+            animation: grid-move 4s linear infinite;
         }
 
-        /* Cabeçalho com o Logotipo Oficial */
-        header {
-            padding: 30px 20px;
-            text-align: center;
-            background: linear-gradient(to bottom, rgba(11,15,25,0.9), transparent);
+        @keyframes grid-move {
+            0% { transform: rotateX(60deg) translateY(0); }
+            100% { transform: rotateX(60deg) translateY(60px); }
         }
 
-        .logo-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 10px;
-        }
-
-        .logo-img {
-            width: 100%;
-            height: auto;
-            max-width: 500px;
-            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.6));
-        }
-
-        .studio-tagline {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.7rem;
-            color: var(--neon-cyan);
-            margin-top: 15px;
-            text-shadow: 0 0 8px var(--neon-cyan);
-            letter-spacing: 1px;
-        }
-
-        /* Conteúdo Principal */
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .game-card {
-            background: rgba(17, 24, 39, 0.85);
-            border: 2px solid var(--neon-pink);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 0 25px rgba(236, 72, 153, 0.3), inset 0 0 15px rgba(236, 72, 153, 0.1);
-            backdrop-filter: blur(10px);
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .game-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-pink);
-            margin-bottom: 15px;
-        }
-
-        .badge-indie {
-            display: inline-block;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.6rem;
-            background-color: var(--neon-orange);
-            color: #000;
-            padding: 6px 12px;
-            border-radius: 4px;
-            margin-bottom: 25px;
-            font-weight: bold;
-        }
-
-        .game-description {
-            font-size: 1.2rem;
-            color: #cbd5e1;
-            line-height: 1.8;
-            max-width: 750px;
-            margin: 0 auto 35px auto;
-        }
-
-        /* Galeria Neon */
-        .screenshot-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-            margin-bottom: 45px;
-        }
-
-        .screenshot-item {
-            background-color: #1f2937;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 2px solid var(--neon-cyan);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
-            aspect-ratio: 16/9;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .screenshot-item:hover {
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: 0 0 20px var(--neon-cyan);
-        }
-
-        .screenshot-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Botão Estilo Fliperama/Neon */
-        .btn-download {
-            display: inline-flex;
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            font-family: 'Orbitron', sans-serif;
-            background: transparent;
-            color: #ffffff;
-            padding: 18px 40px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 800;
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 3px solid var(--neon-cyan);
-            box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .btn-download:hover {
-            background-color: var(--neon-cyan);
-            color: #000000;
-            box-shadow: 0 0 35px var(--neon-cyan);
-            transform: translateY(-3px);
-        }
-
-        /* Rodapé Legal Regulamentar */
-        footer {
-            background-color: rgba(7, 10, 19, 0.95);
+            position: relative;
             text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9rem;
-            color: #64748b;
-            border-top: 2px solid var(--neon-pink);
-            margin-top: 80px;
+            padding: 20px;
         }
 
-        .links-footer {
+        .sun {
+            position: absolute;
+            width: 300px; height: 300px;
+            background: linear-gradient(var(--sun-yellow), var(--sun-orange));
+            border-radius: 50%;
+            z-index: -1;
+            box-shadow: 0 0 80px var(--sun-orange);
+            mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 55%, black 60%, transparent 68%, black 75%, transparent 85%, black 95%);
+        }
+
+        .brand-logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(1.5rem, 8vw, 3.5rem);
+            color: white;
+            text-shadow: 4px 4px 0px var(--neon-pink), -4px -4px 0px var(--neon-cyan);
             margin-bottom: 20px;
         }
 
-        .links-footer a {
-            font-family: 'Orbitron', sans-serif;
+        /* Container de Jogos */
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        .section-header {
+            font-family: 'Press Start 2P', cursive;
+            border-left: 5px solid var(--neon-pink);
+            padding-left: 15px;
+            margin-bottom: 40px;
+            font-size: 1rem;
+            color: var(--neon-cyan);
+        }
+
+        /* Card do Jogo Adaptado */
+        .game-card {
+            background: rgba(11, 15, 25, 0.9);
+            border: 2px solid var(--neon-cyan);
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s;
+            margin-bottom: 50px;
+        }
+
+        @media (min-width: 850px) {
+            .game-card { flex-direction: row; }
+            .game-img { width: 400px; min-width: 400px; }
+        }
+
+        .game-img {
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid var(--neon-cyan);
+        }
+
+        @media (min-width: 850px) {
+            .game-img { border-bottom: none; border-right: 2px solid var(--neon-cyan); }
+        }
+
+        .game-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: 0.5s;
+            filter: saturate(1.2) contrast(1.1);
+        }
+
+        .game-card:hover .game-img img {
+            transform: scale(1.05);
+        }
+
+        .game-info { padding: 30px; flex-grow: 1; }
+
+        .game-status {
+            display: inline-block;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            background: var(--neon-pink);
+            font-family: 'Press Start 2P', cursive;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .game-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--neon-cyan);
+            line-height: 1.4;
+        }
+
+        .description-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            margin-bottom: 25px;
+        }
+
+        /* Lista de Funcionalidades */
+        .features-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .features-list li::before {
+            content: '▶';
+            color: var(--neon-pink);
+            margin-right: 10px;
+            font-size: 0.7rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: transparent;
+            border: 2px solid var(--neon-pink);
             color: var(--neon-pink);
             text-decoration: none;
-            margin: 0 20px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 0 0 5px rgba(236, 72, 153, 0.4);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            text-align: center;
         }
 
-        .links-footer a:hover {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 8px var(--neon-cyan);
+        .download-btn:hover {
+            background: var(--neon-pink);
+            color: white;
+            box-shadow: 0 0 20px var(--neon-pink);
         }
 
-        .legal-info {
-            font-size: 0.85rem;
-            line-height: 1.8;
-            color: #475569;
-            max-width: 600px;
-            margin: 0 auto;
+        /* Outros Jogos (Grid Menor) */
+        .other-games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            opacity: 0.8;
         }
 
-        /* Ajustes Responsivos para Celulares */
-        @media (max-width: 600px) {
-            .game-card { padding: 25px 15px; }
-            .game-title { font-size: 1.8rem; }
-            .logo-img { max-width: 280px; }
-            .studio-tagline { font-size: 0.55rem; }
-            .btn-download { font-size: 1rem; padding: 14px 25px; }
+        .mini-card {
+            border: 1px solid #333;
+            padding: 20px;
+            text-align: center;
+            background: rgba(0,0,0,0.4);
+        }
+
+        /* Scanlines Overlay */
+        body::after {
+            content: " ";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 3px, 2px 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 2px solid var(--neon-pink);
+            margin-top: 60px;
+            background: black;
         }
     </style>
 </head>
 <body>
 
-    <!-- Cabeçalho contendo a sua marca em destaque -->
-    <header>
-        <div class="logo-container">
-            <!-- Pega a imagem da logo que está na mesma pasta -->
-            <img src="./logo.jpg" alt="VJ Games Logo Oficial" class="logo-img">
-            <div class="studio-tagline">RETRO & INDIE GAME STUDIO</div>
-        </div>
-    </header>
-
-    <div class="container">
-        <!-- Vitrine do Jogo Atual -->
-        <div class="game-showcase">
-            <div class="game-card">
-                <div class="badge-indie">RETRO PLATFORMER</div>
-                <h2 class="game-title">Lorenzo O Aventureiro</h2>
-                
-                <p class="game-description">
-                    Explore mundos vibrantes, supere obstáculos desafiadores e embarque em uma jornada épica com estética clássica e mecânicas cativantes feitas para toda a família!
-                </p>
-                
-                <!-- Capturas de Tela com moldura neon animada -->
-                <div class="screenshot-grid">
-                    <div class="screenshot-item">
-                        <img src="./foto1.jpg" alt="Lorenzo O Aventureiro - Gameplay 1">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="./foto2.jpg" alt="Lorenzo O Aventureiro - Gameplay 2">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="./foto3.jpg" alt="Lorenzo O Aventureiro - Gameplay 3">
-                    </div>
-                </div>
-
-                <!-- Botão de Ação Seguro para análise da Google Play -->
-                <a href="#" class="btn-download">🕹️ DISPONÍVEL EM BREVE NA GOOGLE PLAY</a>
-            </div>
-        </div>
+    <div class="grid-container">
+        <div class="grid"></div>
     </div>
 
-    <!-- Rodapé em conformidade com as Regras de Desenvolvedor Google -->
-    <footer>
-        <div class="links-footer">
-            <a href="./politica-privacidade.html">POLÍTICA DE PRIVACIDADE</a>
+    <header class="hero">
+        <div class="sun"></div>
+        <h1 class="brand-logo">VJ GAMES</h1>
+        <p style="font-family: 'Press Start 2P'; font-size: 0.7rem; color: var(--neon-cyan);">ESTÚDIO DE JOGOS RETRO & INDIE</p>
+    </header>
+
+    <main class="container">
+        <h2 class="section-header">DESTAQUE ATUAL</h2>
+        
+        <!-- JOGO PRINCIPAL: LORENZO -->
+        <article class="game-card">
+            <div class="game-img">
+                <!-- Substitua o src abaixo pelo caminho da imagem que você possui -->
+                <img src="lorenzo_capa.jpg" alt="Lorenzo O Aventureiro">
+            </div>
+            <div class="game-info">
+                <span class="game-status">DISPONÍVEL AGORA</span>
+                <h3 class="game-title">LORENZO O AVENTUREIRO</h3>
+                
+                <p class="description-text">
+                    Prepare-se para uma aventura nostálgica! Entre no universo pixelizado deste emocionante jogo de plataforma 2D que combina a essência dos clássicos de 8 e 16 bits com mecânicas modernas e fluidas. Teste os seus reflexos em níveis cheios de ação e perigos.
+                </p>
+
+                <ul class="features-list">
+                    <li>Ação de plataforma retro clássica</li>
+                    <li>25 Skins Lendárias para colecionar</li>
+                    <li>Habilidades e poderes personalizados</li>
+                    <li>Sistema de loja e recompensas</li>
+                    <li>Segredos ocultos em cada nível</li>
+                </ul>
+
+                <a href="#" class="download-btn">BAIXAR NA GOOGLE PLAY</a>
+            </div>
+        </article>
+
+        <h2 class="section-header">EM DESENVOLVIMENTO</h2>
+        <div class="other-games">
+            <div class="mini-card">
+                <p style="font-family: 'Press Start 2P'; font-size: 0.6rem; color: #666;">PROJETO SECRETO</p>
+                <p style="margin-top: 10px; color: #444;">EM BREVE...</p>
+            </div>
+            <div class="mini-card">
+                <p style="font-family: 'Press Start 2P'; font-size: 0.6rem; color: #666;">PROJETO SECRETO II</p>
+                <p style="margin-top: 10px; color: #444;">EM BREVE...</p>
+            </div>
         </div>
-        <div class="legal-info">
-            <strong>Razão Social:</strong> VANDERSON JOSE DOS SANTOS 39517734808<br>
-            <strong>Contato:</strong> vj.gamer2019@gmail.com<br>
-            <span style="margin-top: 10px; display:block;">© 2026 VJ Games. Todos os direitos reservados.</span>
+    </main>
+
+    <footer>
+        <div style="font-family: 'Press Start 2P'; font-size: 0.6rem; line-height: 2;">
+            VJ GAMES STUDIO<br>
+            <span style="color: var(--neon-cyan);">vj.gamer2019@gmail.com</span><br><br>
+            <a href="https://vanjoseph2009.github.io/privacy/" style="color: var(--neon-pink); text-decoration: none;">POLÍTICA DE PRIVACIDADE</a>
         </div>
     </footer>
 
